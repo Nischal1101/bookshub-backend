@@ -4,8 +4,11 @@ import bookRoutes from "./routes/bookRoutes";
 import { PORT } from "./config";
 import { connectDb } from "./lib/db";
 import cors from "cors";
+import job from "./lib/cron";
+
 const app = express();
 
+// job.start();
 app.use(express.json());
 app.use(cors());
 app.use("/api/auth", authRoutes);
