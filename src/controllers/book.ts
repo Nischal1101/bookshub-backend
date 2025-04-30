@@ -36,13 +36,16 @@ const bookController = {
       const page = req.query.page || 1;
       const limit = req.query.limit || 5;
       const skip = (Number(page) - 1) * Number(limit);
-
-      const books = await Book.find({})
+      const filter: any = {};
+      if (req.query.userId) {
+        filter.user = req.query.userId;
+      }
+      const books = await Book.find(filter)
         .sort({ createdAt: -1 })
         .skip(skip)
         .limit(Number(limit))
         .populate("user", "username profileImage");
-      const totalBooks = await Book.countDocuments();
+      const totalBooks = await Book.countDocuments(filter);
       return res.status(200).json({
         currentPage: Number(page),
         totalBooks,
