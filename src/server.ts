@@ -9,8 +9,14 @@ import job from "./lib/cron";
 const app = express();
 
 job.start();
-app.use(cors());
 app.use(express.json({ limit: "10mb" }));
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 app.get("/", (req, res) => {
   res.json({ message: "Server is up and running" });
 });
