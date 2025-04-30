@@ -33,7 +33,7 @@ const bookController = {
   },
   async getBooks(req: Request, res: Response, next: NextFunction) {
     try {
-      const page = req.query.skip || 1;
+      const page = req.query.page || 1;
       const limit = req.query.limit || 5;
       const skip = (Number(page) - 1) * Number(limit);
 
