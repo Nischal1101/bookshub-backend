@@ -28,7 +28,7 @@ const bookController = {
         newBook,
       });
     } catch (error) {
-      return res.status(500).json({ message: "Book creation failed" });
+      return res.status(500).json({ message: "Book creation failed" + error });
     }
   },
   async getBooks(req: Request, res: Response, next: NextFunction) {
