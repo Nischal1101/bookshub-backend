@@ -11,6 +11,9 @@ const app = express();
 job.start();
 app.use(express.json({ limit: "10mb" }));
 app.use(cors());
+app.get("/", (req, res) => {
+  res.json({ message: "Server is up and running" });
+});
 app.use("/api/auth", authRoutes);
 app.use("/api/books", bookRoutes);
 connectDb()
