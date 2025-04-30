@@ -8,8 +8,8 @@ import job from "./lib/cron";
 
 const app = express();
 
-// job.start();
-app.use(express.json());
+job.start();
+app.use(express.json({ limit: "10mb" }));
 app.use(cors());
 app.use("/api/auth", authRoutes);
 app.use("/api/books", bookRoutes);
