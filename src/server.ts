@@ -9,13 +9,13 @@ import job from "./lib/cron";
 const app = express();
 
 job.start();
-app.use(express.json({ limit: "10mb" }));
 app.use(cors());
+app.use(express.json({ limit: "10mb" }));
 app.get("/", (req, res) => {
   res.json({ message: "Server is up and running" });
 });
-app.use("/api/auth", authRoutes);
 app.use("/api/books", bookRoutes);
+app.use("/api/auth", authRoutes);
 connectDb()
   .then(() => {
     console.log("Connected to database successfully");
