@@ -38,9 +38,16 @@ const authController = {
       });
       const token = generateToken(String(user._id));
 
-      return res
-        .status(201)
-        .json({ token, user: { id: user._id, username, email, profileImage } });
+      return res.status(201).json({
+        token,
+        user: {
+          id: user._id,
+          username,
+          email,
+          profileImage,
+          createdAt: user.createdAt,
+        },
+      });
     } catch (error) {
       return res.status(500).json({ message: "Registration failed" });
     }
@@ -70,6 +77,7 @@ const authController = {
           username: user.username,
           email: user.email,
           profileImage: user.profileImage,
+          createdAt: user.createdAt,
         },
       });
     } catch (error) {
